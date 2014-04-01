@@ -1,6 +1,3 @@
-var express = require("express");
-var app = module.exports = express();
-
-app.get('/', function(req, res){
-    res.render('main');
-});
+exports.home = function(req, res){
+    res.render('home', { title: 'Route Separation Example' });
+};

@@ -18,13 +18,14 @@ app.use(app.router);
 app.use(express.errorHandler());
 
 // Local Apps
-//var Main = require('./controllers/Main');
+var Main = require('./controllers/Main');
 var Patients = require('./controllers/Patients');
 
 
 // ROUTES
-//app.get('/', Main.index);
+app.get('/', Main.home);
 app.get('/patients', Patients.list);
+app.get('/else', Patients.else);
 
 // RUN SERVER
 app.listen(app.get('port'), function() {
