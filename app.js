@@ -1,9 +1,10 @@
 var express = require("express");
+var path = require('path');
 var app = express();
-
 
 // Express configuration.
 app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.compress());
 app.use(express.favicon());
@@ -17,12 +18,14 @@ app.use(app.router);
 app.use(express.errorHandler());
 
 // Local Apps
-var Main = require('./lib/Main');
-var Patients = require('./lib/Patients');
+var Main = require('./controllers/Main');
+var Patients = require('./controllers/Patients');
 
-// Mounting the local apps
-app.use(Main);
-app.use(Patients);
+
+// ROUTES
+app.get('/', Main.home);
+app.get('/patients', Patients.list);
+app.get('/else', Patients.else);
 
 // RUN SERVER
 app.listen(app.get('port'), function() {
