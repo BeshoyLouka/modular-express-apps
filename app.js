@@ -17,9 +17,11 @@ app.use(app.router);
 app.use(express.errorHandler());
 
 // Local Apps
+var Main = require('./lib/Main');
 var Patients = require('./lib/Patients');
 
 // Mounting the local apps
+app.use(Main);
 app.use(Patients);
 
 // RUN SERVER
